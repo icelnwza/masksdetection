@@ -3,7 +3,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
 from imutils.video import VideoStream
-#from pygame import mixer
+from pygame import mixer
 import numpy as np
 import imutils
 import time
@@ -75,9 +75,9 @@ FACE_MODEL_PATH=os.getcwd()+"\\face_detector"
 SOUND_PATH=os.getcwd()+"\\sounds\\alarm.wav" 
 THRESHOLD = 0.5
 
-# Load Sounds
-#mixer.init()
-#sound = mixer.Sound(SOUND_PATH)
+# ใส่เสียง
+mixer.init()
+sound = mixer.Sound(SOUND_PATH)
 
 # load our serialized face detector model from disk
 print("[INFO] loading face detector model...")
@@ -116,12 +116,12 @@ while True:
 		# determine the class label and color we'll use to draw
 		# the bounding box and text
 		label = "Mask" if mask > withoutMask else "No Mask"
-		#if(label=="No Mask") and (mixer.get_busy()==False):
-		#    sound.play()
+		if(label=="No Mask") and (mixer.get_busy()==False):
+			sound.play()
 		color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
 
 		# include the probability in the label
-		label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+		#label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
 
 		# display the label and bounding box rectangle on the output
 		# frame
@@ -134,7 +134,7 @@ while True:
 
 	# show the output frame
 	frame= cv2.resize(frame,(860,490))
-	cv2.imshow("Masks Detection by Oh Yicong", frame)
+	cv2.imshow("Masks Detection by Nam Prik Long Leaue", frame)
 	key = cv2.waitKey(1) & 0xFF
 
 	# if the `q` key was pressed, break from the loop

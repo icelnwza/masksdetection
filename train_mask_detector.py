@@ -27,14 +27,14 @@ import os
 print(os.getcwd())
 # construct the argument parser and parse the arguments
 dataset_path=os.getcwd()+"//dataset"
-model_path=os.getcwd()+"//model//mask_model"
+model_path=os.getcwd()+"//model//icelnwza"
 plot_path=os.getcwd()+"//plot"
 
 
 # initialize the initial learning rate, number of epochs to train for,
 # and batch size
 INIT_LR = 1e-4
-EPOCHS = 20
+EPOCHS = 10
 BS = 32
 
 # grab the list of images in our dataset directory, then initialize
@@ -149,3 +149,5 @@ plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend(loc="lower left")
 plt.savefig(plot_path)
+
+
